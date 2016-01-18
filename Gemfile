@@ -7,7 +7,7 @@ gem 'pg'
 gem 'bcrypt'
 gem 'passenger'
 gem 'cloudinary'
-gem 'pony'
+#gem 'pony'
 
 
 
