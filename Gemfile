@@ -8,3 +8,8 @@ gem 'bcrypt'
 gem 'passenger'
 gem 'cloudinary'
 gem 'pony'
+
+
+
+
+

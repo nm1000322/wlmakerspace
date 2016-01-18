@@ -6,4 +6,4 @@ DB = Sequel.connect(ENV['DATABASE_URL'])
 require './models.rb'
 DB.disconnect
 
-run Westportmakerspace
+run WLMS

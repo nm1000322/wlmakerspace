@@ -1,5 +1,5 @@
 $("#hiddenChangePass").hide();
-$(".alert.alert-success.alert-dismissible.email").hide();
+/*$(".alert.alert-success.alert-dismissible.email").hide();*/
 $('#coachlogin').click(function(){
     $('#mymodal').modal('show')
 })
@@ -43,5 +43,8 @@ $('.blogPost').readmore({
 })
 $('.delete').click(function(){
     $('#postDelete').modal('show')
+})
+$('#openSuggest').click(function(){
+    $('#suggestionModal').modal('show')
 })
 

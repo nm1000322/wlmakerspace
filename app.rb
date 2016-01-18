@@ -1,24 +1,9 @@
-class Westportmakerspace < Sinatra::Base
-
-#---------------SETUP-----------------
-=begin
-require 'bundler'
-Bundler.require
+class WLMS < Sinatra::Base
 include BCrypt
-=end
-#-----------SETTINGs--------------
+
 configure do
   set :erb, :layout => :'layouts'
 end
-
-
-#-------------------------DATABASSE LINKING----------------------------
-=begin
-DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/main.db')
-=end
-=begin
-require './models.rb'
-=end
 #------------------SESSION--------------------
 use Rack::Session::Cookie, :key => 'rack.session',
     :expire_after => 2592000,
@@ -31,10 +16,11 @@ get '/' do
 end
 get '/dashboard' do
   if session[:visited]
-
-
+    puts Time.new
 
     @posts = Post.where(:type => "update")
+    @posts=@posts.reverse_order(:id)
+    puts @posts.inspect
     @user = User.first(:id => session[:id])
     erb :dash
   else
@@ -43,6 +29,7 @@ get '/dashboard' do
 end
 get '/blog' do
   @posts = Post.where(:type => "blog")
+  @posts = @posts.reverse_order
   if session[:visited]
     @user = User.first(:id => session[:id])
   end
@@ -64,8 +51,6 @@ not_found do
   @user=User.first(:id => session[:id])
   erb :notfound
 end
-
-
 #-------------POST ROUTES---------------------
 post '/user/auth' do
 
@@ -155,6 +140,7 @@ post '/post/create' do
   i.content = params[:content]
   name = Cloudinary::Uploader.upload(params['myfile'][:tempfile],api_key: ENV["Cloudinary_api"], api_secret: ENV["Cloudinary_secret"], cloud_name: ENV["Cloudinary_name"], :width => params[:width], :crop => :limit)
   i.url = name["url"]
+  #i.url = params[:url]
   i.date = time
   i.type = "blog"
   i.save
@@ -190,6 +176,28 @@ post '/post/delete/:id' do
   p.destroy
   redirect request.env["HTTP_REFERER"]
 end
+post '/email/web/suggest' do
+    user = User.first(:id => session[:id])
+  Pony.mail(
+      :to => 'nqmetke@gmail.com',
+      :from => 'betamakerspace@gmail.com',
+      :subject=> "New suggestion from #{user.firstname} #{user.lastname}, email back #{user.email}",
+      :body => "Their suggestion is this: #{params[:suggestion]}.",
+      :via => :smtp,
+      :via_options =>{
+          :address              => 'smtp.gmail.com',
+          :port                 => '587',
+          :enable_starttls_auto => true,
+          :user_name            => 'betamakerspace',
+          :password             => 'wplmakerspace',
+          :authentication       => :plain,
+
+          :domain               => 'localhost.localdomain'
 
 
+   }  )
+  redirect '/dashboard'
+end
   end
+
+

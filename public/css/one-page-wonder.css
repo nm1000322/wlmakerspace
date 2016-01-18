@@ -292,10 +292,16 @@ footer {
 }
 #newblogpost{
     float: right;
-    margin-bottom: 15px;
-}
-#newblogpost{
-    float: right;
-    margin-bottom: 15px;
+    border: 15px;
     text-decoration:none;
+    cursor: pointer;
+}
+.date{
+    float:left
+}
+.comment{
+    float: right;
+}
+#openSuggest{
+    margin: 15px;
 }
