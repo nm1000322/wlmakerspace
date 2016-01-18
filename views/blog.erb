@@ -1,0 +1,119 @@
+<header class="header-image-2">
+  <div class="headline">
+    <div class="container">
+      <h2><i class="fa fa-wrench"></i> What Are We Making?</h2>
+
+
+
+
+    </div>
+  </div>
+</header>
+
+<div class="center">
+
+<%if session[:visited]%>
+    <%if @user.perm > 2  %>
+        <a id="newblogpost"><i class="fa fa-plus fa-3x"></i></a>
+          <hr>
+    <% end %>
+<% end %>
+</div>
+
+
+
+<div class="col-md-3"></div>
+<div class="col-md-6">
+<div class="center">
+<% @posts.each do |post| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title font subtitle"><%= post.title %>
+       <%if session[:visited]%>
+        <%if @user.perm >= 2 %>
+           <a  class="delete"><i class="fa fa-times fa-lg"></i></a>
+        <%end%>
+       <%end%>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <img class="postimage font" src="<%= post.url %>">
+        <hr>
+        <div class="caption font">
+        <%= post.content %>
+        </div>
+      </div>
+    </div>
+
+
+      <div class="modal fade" id="postDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Are you sure you would like to delete the post "<%= post.title %>"?</h4>
+            </div>
+            <form class="" method="post" action="/post/delete/<%= post.id %>">
+              <fieldset>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                  <button  type="submit" class="btn btn-danger">Delete Post</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+      </div>
+
+
+
+<%end%>
+</div>
+  </div>
+  <div class="col-md-3"></div>
+
+
+
+
+
+<%if session[:visited] && @user.perm>2%>
+<div class="modal fade" id="postCreate" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"></h4>
+      </div>
+      <form class="" method="post" action="/post/create">
+        <div class="modal-body">
+          <fieldset>
+            <div class="form-group">
+              <label class="font">Post Title</label>
+              <input minlength="2" required class="form-control" type="text" name="title">
+            </div>
+            <div class="form-group">
+              <label class="font">Temp</label>
+              <input minlength="2" required class="form-control" name="url">
+            </div>
+            <div class="form-group">
+              <label class="font">Content</label><br>
+              <textarea class="form-control postContent" name="content"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="font">CURRENTLY NOT WORKING!</label>
+              <input class="font" type="file" name="notworking">
+            </div>
+            <div class="alert alert-info email" role="alert">
+              <strong>Important!</strong> If you plan on adding boldface, italics or line breaks use the HTML, until I can get it working. To bold, use &lt;b&gt;BOLD FACE TEXT&lt;/b&gt;, &lt;i&gt;italic text&lt;/i&gt;,<br> one line&lt;br&gt; new line
+            </div>
+          </fieldset>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default font" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary font">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%end%>

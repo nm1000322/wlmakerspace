@@ -1,0 +1,111 @@
+<!-- Navigation -->
+
+
+<!-- Full Width Image Header -->
+<header class="header-image">
+  <div class="headline">
+    <div class="container">
+      <!--<h1>Westport Library Makerspace</h1>
+      <h2>Come in, Go far</h2>-->
+
+      <img class="logo" src="/ms_logo_alt_white_w_wl_logo_w_border.png">
+
+    </div>
+  </div>
+</header>
+
+<!-- Page Content -->
+<%= puts @test %>
+<%if @test==1  %>
+<div class="alert alert-success alert-dismissible email" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+  <strong>Sent!</strong> You should expect an email back in the next few days!
+</div>
+
+    <%end  %>
+<div class="container">
+
+  <hr class="featurette-divider">
+
+  <!-- First Featurette -->
+  <div id="about"></div>
+  <div class="featurette" >
+    <img class="featurette-image img-rounded img-responsive pull-right" src="/robot-just-starting.jpg">
+    <h2 class="featurette-heading font">Who
+      <span class="text-muted font">are we?</span>
+    </h2>
+    <p class="lead font">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Second Featurette -->
+  <div class="featurette" id="services">
+    <img class="featurette-image img-rounded img-responsive pull-left" src="/robot-almost-done.jpg">
+    <h2 class="featurette-heading font">What
+      <span class="text-muted font">do we do?</span>
+    </h2>
+    <p class="lead font">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Third Featurette -->
+  <div class="featurette" id="contact">
+    <img class="featurette-image img-rounded img-responsive pull-right" src="robot-hand-up.jpg">
+    <h2 class="featurette-heading font">Want to get trained?
+      <span class="text-muted font">Schedule today!</span>
+    </h2>
+    <div class="container">
+      <div class="center">
+    <p class="lead font">
+      <form id="trainingrequest" method="post" action="/test/email">
+        <fieldset>
+        <div class="form-group">
+          <label class="font">First Name: </label>
+        <input class="form-control smallform" minlength="2" required placeholder="First Name" type="text" name="firstname">
+        </div>
+        <div class="form-group">
+          <label class="font">Last Name: </label>
+          <input class="form-control smallform font" placeholder="Last name" required minlength="2" type="text" name="lastname">
+        </div>
+        <div class="form-group">
+          <label class="font">Date: </label>
+          <input class="form-control smallform  datepicker font" required placeholder="Click me for date" type="text" name="date">
+        </div>
+        <div class="form-group">
+          <label class="font"> Time:  </label>
+          <input class="form-control smallform timepicker font" required placeholder="Click me for time" type="text" name="time">
+        </div>
+        <div class="form-group">
+          <label class="font">Email: </label>
+          <input class="form-control smallform font" required placeholder="Email" type="email" name="email">
+        </div>
+          <div class="alert alert-info email" role="alert">
+            <strong>Remember!</strong> This will notify us that you would like to get trained. We will email you, and we can talk about availability!
+          </div>
+        <hr>
+        <button type="submit" id="sentemail" class="btn btn-success font">Submit</button>
+        </fieldset>
+      </form>
+
+    </p>
+    </div>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- Footer -->
+  <footer>
+    <div class="row">
+      <div class="col-lg-12">
+        <!--<p>Copyright &copy; Your Website 2014</p>-->
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+
+
