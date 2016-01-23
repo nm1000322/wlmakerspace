@@ -17,7 +17,7 @@
 <!-- Page Content -->
 <%= puts @test %>
 <%if @test==1  %>
-<div class="alert alert-success alert-dismissible email" role="alert">
+<div id="training_sent_alert" class="alert alert-success alert-dismissible email" role="alert">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <strong>Sent!</strong> You should expect an email back in the next few days!
 </div>
@@ -58,7 +58,7 @@
     <div class="container">
       <div class="center">
     <p class="lead font">
-      <form id="trainingrequest" method="post" action="/test/email">
+      <form id="trainingrequest">
         <fieldset>
         <div class="form-group">
           <label class="font">First Name: </label>

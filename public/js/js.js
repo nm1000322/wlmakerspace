@@ -1,3 +1,36 @@
+var userId;
+var userName;
+var userImg;
+var userEmail;
+
+
+
+function onSignIn(googleUser) {
+    // Useful data for your client-side scripts:
+    var profile = googleUser.getBasicProfile();
+    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+    userName = profile.getName();
+    userImg = profile.getImageUrl();
+    userEmail = profile.getEmail();
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+};
+
+function clicky(){
+    $.post("/test", {name: userName, email: userEmail});
+}
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+        console.log('User signed out.');
+        userId="";
+        userName="";
+        userImg="";
+        userEmail="";
+    });
+}
+
 $("#hiddenChangePass").hide();
 /*$(".alert.alert-success.alert-dismissible.email").hide();*/
 $('#coachlogin').click(function(){
@@ -47,4 +80,14 @@ $('.delete').click(function(){
 $('#openSuggest').click(function(){
     $('#suggestionModal').modal('show')
 })
+
+
+$('#testmail').click(function(){
+    $.post( "/test/email", $( "#trainingrequest" ).serialize() );
+    $('#training_sent_alert').show();
+})
+
+
+
+
 

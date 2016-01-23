@@ -1,6 +1,9 @@
-class WLMS < Sinatra::Base
+require 'bundler'
+Bundler.require
 include BCrypt
 
+DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/main.db')
+require './models.rb'
 configure do
   set :erb, :layout => :'layouts'
 end
@@ -37,6 +40,7 @@ get '/blog' do
 end
 get '/settings' do
   if session[:visited]
+    puts @test
     @user = User.first(:id => session[:id])
     erb :settings
   else
@@ -130,7 +134,7 @@ post '/test/email' do
 
 
    }  )
-  @test = 1
+  puts "Hey!"
   redirect '/#contact'
 end
 post '/post/create' do
@@ -138,9 +142,9 @@ post '/post/create' do
   i = Post.new
   i.title = params[:title]
   i.content = params[:content]
-  name = Cloudinary::Uploader.upload(params['myfile'][:tempfile],api_key: ENV["Cloudinary_api"], api_secret: ENV["Cloudinary_secret"], cloud_name: ENV["Cloudinary_name"], :width => params[:width], :crop => :limit)
-  i.url = name["url"]
-  #i.url = params[:url]
+  #name = Cloudinary::Uploader.upload(params['myfile'][:tempfile],api_key: ENV["Cloudinary_api"], api_secret: ENV["Cloudinary_secret"], cloud_name: ENV["Cloudinary_name"], :width => params[:width], :crop => :limit)
+  #i.url = name["url"]
+  i.url = params[:url]
   i.date = time
   i.type = "blog"
   i.save
@@ -198,6 +202,15 @@ post '/email/web/suggest' do
    }  )
   redirect '/dashboard'
 end
+post '/test' do
+  puts "works here!"
+  u = User.first(:email => params[:email])
+  if u.firstname + " " + u.lastname == params[:name]
+    puts u.firstname + " " + u.lastname
+    @test = "What up, thanks for loggins in"
+    puts "This is you!"
   end
+end
+
 
 
