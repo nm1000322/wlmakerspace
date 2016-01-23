@@ -3,12 +3,12 @@ ruby '2.0.0'
 gem 'sinatra'
 gem 'rake'
 gem 'sequel'
-#gem 'pg'
+gem 'pg'
 gem 'bcrypt'
-#gem 'passenger'
+gem 'passenger'
 gem 'cloudinary'
 gem 'pony'
-gem 'sqlite3'
+#gem 'sqlite3'
 
 
 
