@@ -1,9 +1,11 @@
-require 'bundler'
-Bundler.require
+#require 'bundler'
+#Bundler.require
+
+class WLMS < Sinatra::Base
 include BCrypt
 
-DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/main.db')
-require './models.rb'
+#DB = Sequel.connect(ENV['DATABASE_URL'] || 'sqlite://db/main.db')
+#require './models.rb'
 configure do
   set :erb, :layout => :'layouts'
 end
@@ -211,6 +213,7 @@ post '/test' do
     puts "This is you!"
   end
 end
+  end
 
 
 
