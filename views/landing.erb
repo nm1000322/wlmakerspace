@@ -106,5 +106,35 @@
 
 </div>
 
+<% if @signup%>
+    <form class="" method="post" action="/user/create">
+      <fieldset>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label>First Name</label>
+            <input minlength="2" required class="form-control" type="text" name="firstname">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input minlength="2" required class="form-control" type="text" name="lastname">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" required class="form-control" name="email">
+          </div>
+          <div class="form-group">
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+      </fieldset>
+    </form>
+<%end%>
+
 
 

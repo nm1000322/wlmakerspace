@@ -15,7 +15,7 @@ use Rack::Session::Cookie, :key => 'rack.session',
     :secret => SecureRandom.hex(64)
 #---------GET ROUTES---------------
 get '/' do
-
+  @signup = ENV["Signup"]
   @user = User.first(:id => session[:id])
   erb :landing
 end
