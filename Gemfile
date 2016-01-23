@@ -5,7 +5,7 @@ gem 'rake'
 gem 'sequel'
 gem 'pg'
 gem 'bcrypt'
-
+gem 'passenger'
 gem 'cloudinary'
 gem 'pony'
 
