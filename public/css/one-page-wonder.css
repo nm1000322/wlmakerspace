@@ -20,7 +20,7 @@ body {
     width: 100%;
 
     text-align: center;
-    background: url('blurry_arduino.jpe') no-repeat center center scroll;
+    background: url('/blurry_arduino.jpe') no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
