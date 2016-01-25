@@ -57,6 +57,9 @@ not_found do
   @user=User.first(:id => session[:id])
   erb :notfound
 end
+  get '/oculus' do
+    erb :oculus
+  end
 #-------------POST ROUTES---------------------
 post '/user/auth' do
 
